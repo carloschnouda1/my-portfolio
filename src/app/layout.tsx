@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://carloschnouda.com",
+    url: "https://carloschnouda.info",
     title: "Carlos Chnouda - Full Stack Web Developer",
     description: "Full Stack Web Developer with 4 years of experience building dynamic, responsive web applications.",
     siteName: "Carlos Chnouda Portfolio",
