@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import ThemeToggle from './ThemeToggle'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -15,7 +16,6 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
   const navItems = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
@@ -34,28 +34,24 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ y: -110 }}
+      animate={{ y: 20, borderRadius: '45px' }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'glass backdrop-blur-md border-b border-white/10'
-          : 'bg-transparent'
-      }`}
+      className='fixed left-0 right-0 z-50 transition-all duration-300 glass backdrop-blur-md border-b border-white/10 w-fit mx-auto'
     >
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold gradient-text cursor-pointer"
+            className="block md:hidden text-2xl font-bold gradient-text cursor-pointer"
             onClick={() => scrollToSection('#home')}
           >
             Carlos Chnouda
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-10">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item, index) => (
               <motion.button
                 key={item.name}
@@ -70,20 +66,26 @@ const Navbar = () => {
                 {item.name}
               </motion.button>
             ))}
+            <ThemeToggle />
           </div>
 
-          {/* Mobile menu button */}
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            className="md:hidden text-white p-2"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+          {/* Mobile controls */}
+          <div className="md:hidden flex items-center space-x-2">
+            <div className='hidden md:block'>
+              <ThemeToggle />
+            </div>
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              className="text-white p-2"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.button>
+          </div>
         </div>
       </div>
 
-          {/* Mobile Navigation */}
+      {/* Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -91,7 +93,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden glass-dark border-t border-white/10"
+            className="md:hidden glass-dark border-t border-white/10 rounded-b-45px"
           >
             <div className="px-6 py-6 space-y-4">
               {navItems.map((item, index) => (
@@ -106,6 +108,12 @@ const Navbar = () => {
                   {item.name}
                 </motion.button>
               ))}
+              <div className="pt-4 border-t border-white/10">
+                <div className="flex items-center justify-between">
+                  <span className="text-white/80 font-medium">Theme</span>
+                  <ThemeToggle />
+                </div>
+              </div>
             </div>
           </motion.div>
         )}

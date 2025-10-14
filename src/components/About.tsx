@@ -72,7 +72,7 @@ const About = () => {
                     variants={staggerItem}
                     className="flex items-center space-x-3 glass p-4 rounded-xl"
                   >
-                    <div className="w-2 h-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full" />
+                    <div className="w-2 h-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex-shrink-0" />
                     <span className="text-white/80 text-sm">{highlight}</span>
                   </motion.div>
                 ))}
