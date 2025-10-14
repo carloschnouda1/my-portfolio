@@ -27,11 +27,20 @@ export const metadata: Metadata = {
     title: "Carlos Chnouda - Full Stack Web Developer",
     description: "Full Stack Web Developer with 4 years of experience building dynamic, responsive web applications.",
     siteName: "Carlos Chnouda Portfolio",
+    images: [
+      {
+        url: "/meta-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Carlos Chnouda - Full Stack Web Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Carlos Chnouda - Full Stack Web Developer",
     description: "Full Stack Web Developer with 4 years of experience building dynamic, responsive web applications.",
+    images: ["/meta-image.jpg"],
   },
 };
 
