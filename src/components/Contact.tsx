@@ -48,6 +48,7 @@ const Contact = () => {
         throw new Error(result.error || 'Failed to send message')
       }
     } catch (error) {
+      console.error('Failed to send message:', error)
       alert('Failed to send message. Please try again or contact me directly.')
     } finally {
       setIsSubmitting(false)

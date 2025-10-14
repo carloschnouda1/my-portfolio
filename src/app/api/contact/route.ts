@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
-import { MongoClient } from 'mongodb'
+import { MongoClient, ObjectId } from 'mongodb'
 
 // Types
 interface ContactFormData {
@@ -155,7 +155,7 @@ export async function POST(request: NextRequest) {
     
     // Send email first (most important)
     let emailId: string
-    let dbId: any = null
+    let dbId: ObjectId | null = null
     let dbError: string | null = null
     
     try {
