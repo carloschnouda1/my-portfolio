@@ -3,13 +3,17 @@
 import { motion } from 'framer-motion'
 import { ExternalLink, Github, Eye } from 'lucide-react'
 import { fadeInUp, staggerContainer, staggerItem } from '@/utils/motion'
+import ReviveClinic from '@/assets/images/revive.png'
+import CodehubSolutions from '@/assets/images/codehubsolutions.png'
+import GlutesWithTracy from '@/assets/images/gluteswithtracy.png'
+import Image from 'next/image'
 
 const Projects = () => {
   const projects = [
     {
       title: 'Revive Clinic',
-      description: 'A comprehensive healthcare management system built with Laravel and Tailwind CSS. Features patient management, appointment scheduling, and medical records tracking.',
-      image: '/api/placeholder/600/400',
+      description: 'Revive Clinic is a project in order to learn more about clinic services and the teams that work there and how they work together to provide the best care to their patients.',
+      image: ReviveClinic,
       technologies: ['Laravel', 'Tailwind CSS', 'MySQL', 'PHP'],
       liveUrl: 'https://revive-lb.com',
       githubUrl: null,
@@ -18,7 +22,7 @@ const Projects = () => {
     {
       title: 'CodehubSolutions',
       description: 'A modern web development agency website showcasing services and portfolio. Built with Laravel backend and Next.js frontend for optimal performance.',
-      image: '/api/placeholder/600/400',
+      image: CodehubSolutions,
       technologies: ['Laravel', 'Next.js', 'Tailwind CSS', 'MySQL'],
       liveUrl: 'https://codehubsolutions.com',
       githubUrl: null,
@@ -27,7 +31,7 @@ const Projects = () => {
     {
       title: 'GlutesWithTracy',
       description: 'A fitness and wellness platform for personal training services. Features workout plans, client management, and progress tracking capabilities.',
-      image: '/api/placeholder/600/400',
+      image: GlutesWithTracy,
       technologies: ['Laravel', 'Next.js', 'Tailwind CSS', 'MySQL'],
       liveUrl: 'https://gluteswithtracy.com',
       githubUrl: null,
@@ -39,7 +43,7 @@ const Projects = () => {
     <section id="projects" className="py-24 px-6 sm:px-8 lg:px-12 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-transparent to-secondary-900/20" />
-      
+
       <div className="max-w-6xl mx-auto">
         <motion.div
           variants={staggerContainer}
@@ -71,13 +75,9 @@ const Projects = () => {
                 <div className="relative h-48 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-6xl opacity-20">
-                      {index === 0 && '🏥'}
-                      {index === 1 && '💻'}
-                      {index === 2 && '💪'}
-                    </div>
+                    <Image src={project.image} alt={project.title} className="w-full h-full object-cover" />
                   </div>
-                  
+
                   {/* Overlay Buttons */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="flex space-x-4">
@@ -170,11 +170,11 @@ const Projects = () => {
               <h3 className="text-2xl font-semibold text-white mb-4">
                 More Projects & Contributions
               </h3>
-                <p className="text-white/70 leading-relaxed mb-6">
-                  These are just a few of my recent projects. I&apos;m constantly working on new ideas, 
-                  contributing to open-source projects, and building solutions that make a difference. 
-                  Each project represents a unique challenge and an opportunity to learn and grow.
-                </p>
+              <p className="text-white/70 leading-relaxed mb-6">
+                These are just a few of my recent projects. I&apos;m constantly working on new ideas,
+                contributing to open-source projects, and building solutions that make a difference.
+                Each project represents a unique challenge and an opportunity to learn and grow.
+              </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
