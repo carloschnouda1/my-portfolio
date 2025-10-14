@@ -41,7 +41,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   // Handle hydration mismatch and initial theme setup
   useEffect(() => {
     setMounted(true)
-    
+
     // Get saved theme from localStorage
     const savedTheme = localStorage.getItem('theme') as Theme
     if (savedTheme && (savedTheme === 'system' || savedTheme === 'light' || savedTheme === 'dark')) {
@@ -57,7 +57,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (!mounted) return
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    
+
     const handleSystemThemeChange = (e: MediaQueryListEvent) => {
       // Only update if we're currently using system theme
       if (theme === 'system') {
@@ -67,7 +67,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
 
     mediaQuery.addEventListener('change', handleSystemThemeChange)
-    
+
     return () => {
       mediaQuery.removeEventListener('change', handleSystemThemeChange)
     }
@@ -75,14 +75,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!mounted) return
-    
+
     // Save theme to localStorage
     localStorage.setItem('theme', theme)
-    
+
     // Apply the actual display theme to document
     const displayTheme = currentDisplayTheme
     document.documentElement.setAttribute('data-theme', displayTheme)
-    
+
     // Update CSS custom properties
     const root = document.documentElement
     if (displayTheme === 'light') {
