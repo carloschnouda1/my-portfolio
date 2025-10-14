@@ -1,4 +1,4 @@
-import { MongoClient, Db } from 'mongodb'
+import { MongoClient, Db, ObjectId } from 'mongodb'
 
 // Database configuration
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017'
@@ -90,7 +90,6 @@ export async function getContactSubmissions(limit: number = 50): Promise<Contact
 export async function getContactSubmissionById(id: string): Promise<ContactSubmission | null> {
   try {
     const { db } = await connectToDatabase()
-    const { ObjectId } = require('mongodb')
     const collection = db.collection('contact_submissions')
     
     const submission = await collection.findOne({ _id: new ObjectId(id) })
