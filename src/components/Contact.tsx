@@ -37,7 +37,7 @@ const Contact = () => {
       
       const result = await response.json()
       
-      if (response.ok) {
+      if (response.ok && result.success) {
         setIsSubmitted(true)
         // Reset form after 3 seconds
         setTimeout(() => {
@@ -48,7 +48,6 @@ const Contact = () => {
         throw new Error(result.error || 'Failed to send message')
       }
     } catch (error) {
-      console.error('Error sending message:', error)
       alert('Failed to send message. Please try again or contact me directly.')
     } finally {
       setIsSubmitting(false)

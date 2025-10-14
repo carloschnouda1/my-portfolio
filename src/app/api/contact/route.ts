@@ -33,20 +33,46 @@ const createTransporter = () => {
 
 // Save to MongoDB
 async function saveToDatabase(data: ContactSubmission) {
+  let client: MongoClient | null = null
   try {
-    const client = new MongoClient(MONGODB_URI)
+    console.log('Attempting to connect to MongoDB...')
+    console.log('MongoDB URI:', MONGODB_URI.replace(/\/\/.*@/, '//***:***@')) // Hide credentials in logs
+    console.log('MongoDB DB:', MONGODB_DB)
+    
+    client = new MongoClient(MONGODB_URI, {
+      serverSelectionTimeoutMS: 10000, // 10 second timeout
+      connectTimeoutMS: 10000,
+    })
+    
     await client.connect()
+    console.log('MongoDB connection established')
     
     const db = client.db(MONGODB_DB)
     const collection = db.collection(MONGODB_COLLECTION)
     
+    console.log('Inserting document into MongoDB...')
     const result = await collection.insertOne(data)
-    await client.close()
+    console.log('Document inserted successfully with ID:', result.insertedId)
     
     return result.insertedId
   } catch (error) {
-    console.error('Database error:', error)
-    throw new Error('Failed to save to database')
+    console.error('Database error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      name: error instanceof Error ? error.name : 'Unknown',
+      stack: error instanceof Error ? error.stack : undefined,
+      mongodbUri: MONGODB_URI ? 'Set' : 'Missing',
+      mongodbDb: MONGODB_DB ? 'Set' : 'Missing'
+    })
+    throw new Error(`Failed to save to database: ${error instanceof Error ? error.message : 'Unknown error'}`)
+  } finally {
+    if (client) {
+      try {
+        await client.close()
+        console.log('MongoDB connection closed')
+      } catch (closeError) {
+        console.error('Error closing MongoDB connection:', closeError)
+      }
+    }
   }
 }
 
@@ -127,11 +153,28 @@ export async function POST(request: NextRequest) {
       ip
     }
     
-    // Save to database and send email in parallel
-    const [dbId, emailId] = await Promise.all([
-      saveToDatabase(submissionData),
-      sendEmail(body)
-    ])
+    // Send email first (most important)
+    let emailId: string
+    let dbId: any = null
+    let dbError: string | null = null
+    
+    try {
+      emailId = await sendEmail(body)
+    } catch (error) {
+      console.error('Email sending failed:', error)
+      return NextResponse.json(
+        { error: 'Failed to send email. Please try again.' },
+        { status: 500 }
+      )
+    }
+    
+    // Try to save to database (optional, don't fail if this doesn't work)
+    try {
+      dbId = await saveToDatabase(submissionData)
+    } catch (error) {
+      console.error('Database save failed:', error)
+      dbError = 'Failed to save to database, but email was sent successfully'
+    }
     
     return NextResponse.json({
       success: true,
@@ -139,7 +182,8 @@ export async function POST(request: NextRequest) {
       data: {
         id: dbId,
         emailId
-      }
+      },
+      ...(dbError && { warning: dbError })
     })
     
   } catch (error) {
