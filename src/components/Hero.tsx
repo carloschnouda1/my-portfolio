@@ -78,7 +78,7 @@ const Hero = () => {
             <motion.a
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
-              href="https://github.com/carloschnouda"
+              href="https://github.com/carloschnouda1"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 glass rounded-full hover:bg-white/10 transition-all duration-300"

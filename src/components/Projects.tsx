@@ -6,10 +6,20 @@ import { fadeInUp, staggerContainer, staggerItem } from '@/utils/motion'
 import ReviveClinic from '@/assets/images/revive.png'
 import CodehubSolutions from '@/assets/images/codehubsolutions.png'
 import GlutesWithTracy from '@/assets/images/gluteswithtracy.png'
+import Portfolio from '@/assets/images/portfolio.png'
 import Image from 'next/image'
 
 const Projects = () => {
   const projects = [
+    {
+      title: 'Portfolio',
+      description: 'My personal portfolio website built with Next.js, Tailwind CSS, TypeScript, and Framer Motion.',
+      image: Portfolio,
+      technologies: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Framer Motion'],
+      liveUrl: 'https://www.carloschnouda.info',
+      githubUrl: null,
+      featured: true
+    },
     {
       title: 'Revive Clinic',
       description: 'Revive Clinic is a project in order to learn more about clinic services and the teams that work there and how they work together to provide the best care to their patients.',
