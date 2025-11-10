@@ -58,7 +58,7 @@ const ThemeToggle = () => {
       </div>
 
       {/* Theme indicator dots */}
-      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-1">
+      <div className="absolute -bottom-4 md:-bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-1">
         <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${theme === 'light' ? 'bg-gradient-to-r from-purple-500 to-pink-500' : 'bg-gray-400 dark:bg-gray-600'
           }`} />
         <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${theme === 'dark' ? 'bg-yellow-400' : 'bg-gray-400 dark:bg-gray-600'

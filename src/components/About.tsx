@@ -7,9 +7,9 @@ import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, staggerItem } from
 const About = () => {
   const stats = [
     { icon: Code, label: 'Years Experience', value: '4+' },
-    { icon: Database, label: 'Projects Completed', value: '20+' },
-    { icon: Globe, label: 'Technologies', value: '15+' },
-    { icon: Users, label: 'Happy Clients', value: '10+' },
+    { icon: Database, label: 'Projects Completed', value: '10+' },
+    { icon: Globe, label: 'Technologies', value: '10+' },
+    { icon: Users, label: 'Happy Clients', value: '5+' },
   ]
 
   const highlights = [

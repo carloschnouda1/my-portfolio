@@ -19,8 +19,11 @@ const Navbar = () => {
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
+      // Close menu after a small delay to ensure scroll starts
+      setTimeout(() => setIsOpen(false), 100)
+    } else {
+      setIsOpen(false)
     }
-    setIsOpen(false)
   }
 
   return (
@@ -80,24 +83,24 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden glass-dark border-t border-white/10 rounded-b-45px"
+            key='mobile-menu'
+            initial={{ opacity: 0, maxHeight: 0 }}
+            animate={{ opacity: 1, maxHeight: '500px' }}
+            exit={{ opacity: 0, maxHeight: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="md:hidden glass-dark border-t border-white/10 rounded-b-45px overflow-hidden"
           >
             <div className="px-6 py-6 space-y-4">
               {navItems.map((item, index) => (
-                <motion.button
+                <button
                   key={item.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => {
+                    scrollToSection(item.href);
+                  }}
                   className="block w-full text-left text-white/80 hover:text-white transition-colors duration-200 py-2 font-medium"
                 >
                   {item.name}
-                </motion.button>
+                </button>
               ))}
               <div className="pt-4 border-t border-white/10">
                 <div className="flex items-center justify-between">
