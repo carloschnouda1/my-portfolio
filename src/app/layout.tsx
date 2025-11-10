@@ -56,22 +56,14 @@ export default function RootLayout({
           {`
             try {
               const savedTheme = localStorage.getItem('theme');
-              let theme = 'system'; // Default to system
-              
-              if (savedTheme && (savedTheme === 'system' || savedTheme === 'light' || savedTheme === 'dark')) {
+              let theme = 'dark'; // Default to dark
+
+              if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
                 theme = savedTheme;
               }
-              
-              // Determine the actual display theme
-              let displayTheme;
-              if (theme === 'system') {
-                displayTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-              } else {
-                displayTheme = theme;
-              }
-              
-              document.documentElement.setAttribute('data-theme', displayTheme);
-              if (displayTheme === 'light') {
+
+              document.documentElement.setAttribute('data-theme', theme);
+              if (theme === 'light') {
                 document.documentElement.style.setProperty('--background', '#ffffff');
                 document.documentElement.style.setProperty('--foreground', '#1a1a1a');
                 document.documentElement.style.setProperty('--primary', '#a855f7');

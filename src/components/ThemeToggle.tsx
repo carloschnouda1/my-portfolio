@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Moon, Sun, Monitor } from 'lucide-react'
+import { Moon, Sun } from 'lucide-react'
 import { useTheme } from '@/contexts/ThemeContext'
 
 const ThemeToggle = () => {
@@ -10,12 +10,6 @@ const ThemeToggle = () => {
   // Get the icon and label for current theme
   const getThemeInfo = () => {
     switch (theme) {
-      case 'system':
-        return {
-          icon: <Monitor className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />,
-          // label: 'Using System Theme - Click to set Light Mode',
-          nextMode: 'Light'
-        }
       case 'light':
         return {
           icon: <Moon className="w-5 h-5 text-slate-700 group-hover:text-slate-900 transition-colors duration-300" />,
@@ -25,13 +19,13 @@ const ThemeToggle = () => {
       case 'dark':
         return {
           icon: <Sun className="w-5 h-5 text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300" />,
-          // label: 'Dark Mode - Click to set System Theme',
-          nextMode: 'System'
+          // label: 'Dark Mode - Click to set Light Mode',
+          nextMode: 'Light'
         }
       default:
         return {
-          icon: <Monitor className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors duration-300" />,
-          // label: 'System Theme',
+          icon: <Sun className="w-5 h-5 text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300" />,
+          // label: 'Dark Mode',
           nextMode: 'Light'
         }
     }
@@ -65,8 +59,6 @@ const ThemeToggle = () => {
 
       {/* Theme indicator dots */}
       <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-1">
-        <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${theme === 'system' ? 'bg-blue-400' : 'bg-gray-400 dark:bg-gray-600'
-          }`} />
         <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${theme === 'light' ? 'bg-gradient-to-r from-purple-500 to-pink-500' : 'bg-gray-400 dark:bg-gray-600'
           }`} />
         <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${theme === 'dark' ? 'bg-yellow-400' : 'bg-gray-400 dark:bg-gray-600'
