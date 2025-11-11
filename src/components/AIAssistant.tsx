@@ -60,7 +60,7 @@ export default function AIAssistant() {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full shadow-2xl hover:shadow-primary-500/50 transition-all duration-300"
+                className="fixed bottom-8 right-6 z-50 p-4 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full shadow-2xl hover:shadow-primary-500/50 transition-all duration-300"
             >
                 <AnimatePresence mode="wait">
                     {isOpen ? (
@@ -95,7 +95,7 @@ export default function AIAssistant() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 100, scale: 0.8 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed bottom-28 right-8 z-40 w-[90vw] sm:w-96 h-[600px] max-h-[80vh] glass-dark rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+                        className="fixed bottom-28 right-6 z-50 w-[88vw] sm:w-96 h-[600px] max-h-[80vh] glass-dark rounded-2xl shadow-2xl overflow-hidden flex flex-col"
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-primary-500 to-secondary-500 p-4 flex items-center space-x-3">
