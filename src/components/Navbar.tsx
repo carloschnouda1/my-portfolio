@@ -91,7 +91,7 @@ const Navbar = () => {
             className="md:hidden glass-dark border-t border-white/10 rounded-b-45px overflow-hidden"
           >
             <div className="px-6 py-6 space-y-4">
-              {navItems.map((item, index) => (
+              {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => {

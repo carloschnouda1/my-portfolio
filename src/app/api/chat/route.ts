@@ -72,16 +72,10 @@ export async function POST(req: Request) {
         return NextResponse.json({
             reply: completion.choices[0].message?.content || "Sorry, I couldn't generate a response.",
         });
-    } catch (error: any) {
-        console.error("Chat API error details:", {
-            message: error?.message,
-            status: error?.status,
-            type: error?.type,
-            error: error,
-        });
+    } catch (error) {
         
         // Return more specific error message
-        const errorMessage = error?.message || "Failed to process message";
+        const errorMessage = error instanceof Error ? error.message : "Failed to process message";
         return NextResponse.json(
             { error: errorMessage },
             { status: 500 }
