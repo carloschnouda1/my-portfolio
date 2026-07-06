@@ -99,14 +99,14 @@ export default function AIAssistant() {
                     >
                         {/* Header */}
                         <div className="bg-gradient-to-r from-primary-500 to-secondary-500 p-4 flex items-center space-x-3">
-                            <div className="p-2 bg-white/20 rounded-full">
-                                <Sparkles className="w-5 h-5 text-white" />
+                            <div className="p-2 bg-black/15 rounded-full">
+                                <Sparkles className="w-5 h-5 text-[#04110f]" />
                             </div>
                             <div className="flex-1">
-                                <h3 className="text-white font-semibold text-lg">AI Assistant</h3>
-                                <p className="text-white/80 text-xs">Ask me about Carlos&apos;s work</p>
+                                <h3 className="text-[#04110f] font-mono font-bold text-base">AI Assistant</h3>
+                                <p className="text-[#04110f]/70 text-xs">Ask me about Carlos&apos;s work</p>
                             </div>
-                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                            <div className="w-2 h-2 bg-[#04110f] rounded-full animate-pulse" />
                         </div>
 
                         {/* Chat Messages */}
@@ -156,7 +156,7 @@ export default function AIAssistant() {
                                     <div
                                         className={`max-w-[75%] px-4 py-3 rounded-2xl ${
                                             msg.sender === "user"
-                                                ? "bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-br-sm"
+                                                ? "bg-gradient-cyber text-[#04110f] font-medium rounded-br-sm"
                                                 : "glass text-white/90 rounded-bl-sm"
                                         }`}
                                     >
@@ -204,7 +204,7 @@ export default function AIAssistant() {
                                     whileTap={{ scale: 0.95 }}
                                     onClick={sendMessage}
                                     disabled={loading || !message.trim()}
-                                    className="p-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-xl hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="p-3 bg-gradient-cyber text-[#04110f] rounded-xl hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     <Send className="w-5 h-5" />
                                 </motion.button>

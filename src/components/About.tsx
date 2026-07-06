@@ -1,143 +1,103 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Code, Database, Globe, Users } from 'lucide-react'
-import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, staggerItem } from '@/utils/motion'
+import { Check } from 'lucide-react'
+import SectionHeader from './ui/SectionHeader'
+import TechBadge from './ui/TechBadge'
+import { fadeInLeft, fadeInRight, staggerContainer, staggerItem } from '@/utils/motion'
+
+const stats = [
+  { label: 'Years building', value: '4+' },
+  { label: 'Projects shipped', value: '10+' },
+  { label: 'Core stacks', value: '5' },
+  { label: 'Happy clients', value: '5+' },
+]
+
+const highlights = [
+  'Architecture-first thinking',
+  'Clean, maintainable code',
+  'Performance optimization',
+  'Web & mobile delivery',
+  'Cross-functional collaboration',
+  'From concept to deployment',
+]
+
+const coreTech = ['Laravel', 'Next.js', 'TypeScript', 'React', 'React Native', 'MySQL', 'Node.js']
 
 const About = () => {
-  const stats = [
-    { icon: Code, label: 'Years Experience', value: '4+' },
-    { icon: Database, label: 'Projects Completed', value: '10+' },
-    { icon: Globe, label: 'Technologies', value: '10+' },
-    { icon: Users, label: 'Happy Clients', value: '5+' },
-  ]
-
-  const highlights = [
-    'Full-stack development expertise',
-    'Modern web technologies',
-    'Responsive design mastery',
-    'Clean, maintainable code',
-    'Cross-functional collaboration',
-    'Performance optimization',
-  ]
-
   return (
-    <section id="about" className="py-24 px-6 sm:px-8 lg:px-12 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-transparent to-secondary-900/20" />
-      
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="relative overflow-hidden px-6 py-24 sm:px-8 md:py-32">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="space-y-20"
         >
-          {/* Section Header */}
-          <motion.div variants={fadeInUp} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-8">
-              About Me
-            </h2>
-            <p className="text-xl text-white/70 max-w-4xl mx-auto leading-relaxed">
-              Passionate about creating exceptional digital experiences through innovative web solutions
-            </p>
-          </motion.div>
+          <SectionHeader
+            eyebrow="01 — about"
+            title="I turn complex problems into shippable products"
+            subtitle="Full Stack Engineer focused on the whole picture — data models, APIs, and the interfaces people actually use."
+          />
 
-          {/* Main Content */}
-          <div className="grid lg:grid-cols-2 gap-20 items-start">
-            {/* Left Content */}
-            <motion.div variants={fadeInLeft} className="space-y-10">
-              <div className="glass p-10 rounded-2xl">
-                <h3 className="text-2xl font-semibold text-white mb-8">
-                  Full Stack Web Developer
-                </h3>
-                <p className="text-white/80 leading-relaxed mb-8 text-lg">
-                  I&apos;m a passionate Full Stack Web Developer with 4 years of experience building 
-                  dynamic, responsive web applications. I specialize in both front-end and back-end 
-                  technologies, delivering seamless and efficient digital solutions from concept to deployment.
+          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
+            {/* Bio */}
+            <motion.div variants={fadeInLeft} className="space-y-8">
+              <div className="glass rounded-2xl p-8">
+                <p className="text-lg leading-relaxed text-white/80">
+                  I&apos;m a Full Stack Engineer with 4 years of experience building dynamic,
+                  responsive web and mobile applications. I care less about tools and more about
+                  outcomes: reliable systems, clean architecture, and interfaces that convert.
                 </p>
-                <p className="text-white/80 leading-relaxed text-lg">
-                  My expertise spans modern JavaScript frameworks, PHP with Laravel, database design, 
-                  and creating user-friendly interfaces. I&apos;m committed to writing clean, maintainable 
-                  code and staying up-to-date with the latest web development trends and best practices.
+                <p className="mt-6 text-lg leading-relaxed text-white/80">
+                  Day to day I work across Laravel, Next.js, TypeScript, React and React Native —
+                  shipping CMS systems, e-commerce platforms, and dynamic frontends from first
+                  commit to production. I also freelance and collaborate with teams on larger
+                  builds.
                 </p>
               </div>
 
               {/* Highlights */}
-              <div className="grid grid-cols-2 gap-6">
-                {highlights.map((highlight) => (
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {highlights.map((h) => (
                   <motion.div
-                    key={highlight}
+                    key={h}
                     variants={staggerItem}
-                    className="flex items-center space-x-3 glass p-4 rounded-xl"
+                    className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3"
                   >
-                    <div className="w-2 h-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex-shrink-0" />
-                    <span className="text-white/80 text-sm">{highlight}</span>
+                    <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-secondary-400/15">
+                      <Check className="h-3 w-3 text-secondary-300" />
+                    </span>
+                    <span className="text-sm text-white/75">{h}</span>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Right Content - Stats */}
-            <motion.div variants={fadeInRight} className="space-y-8">
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat) => (
-                <motion.div
-                  key={stat.label}
-                  variants={staggerItem}
-                  whileHover={{ scale: 1.05 }}
-                  className="glass p-6 rounded-2xl text-center group hover:border-primary-500/50 transition-all duration-300"
-                >
-                    <stat.icon className="w-8 h-8 text-primary-400 mx-auto mb-4 group-hover:text-primary-300 transition-colors" />
-                    <div className="text-3xl font-bold gradient-text mb-2">
-                      {stat.value}
-                    </div>
-                    <div className="text-white/60 text-sm">
-                      {stat.label}
-                    </div>
+            {/* Stats + tech */}
+            <motion.div variants={fadeInRight} className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                {stats.map((stat) => (
+                  <motion.div
+                    key={stat.label}
+                    variants={staggerItem}
+                    whileHover={{ y: -4 }}
+                    className="glass ring-glow rounded-2xl p-6 text-center transition-colors hover:border-primary-400/40"
+                  >
+                    <div className="gradient-text text-3xl font-bold md:text-4xl">{stat.value}</div>
+                    <div className="mt-1 font-mono text-xs text-white/50">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
 
-              {/* Skills Preview */}
-              <div className="glass p-6 rounded-2xl">
-                <h4 className="text-lg font-semibold text-white mb-4">
-                  Core Technologies
-                </h4>
+              <div className="glass rounded-2xl p-6">
+                <h4 className="mono-label mb-4 text-sm text-primary-300">core_stack</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['JavaScript', 'React', 'Next.js', 'Laravel', 'PHP', 'MySQL', 'Tailwind CSS', 'Node.js'].map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 border border-primary-500/30 rounded-full text-sm text-white/80"
-                    >
-                      {tech}
-                    </span>
+                  {coreTech.map((tech) => (
+                    <TechBadge key={tech} label={tech} />
                   ))}
                 </div>
               </div>
-
-              {/* CTA */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="glass p-6 rounded-2xl text-center"
-              >
-                <h4 className="text-lg font-semibold text-white mb-3">
-                  Ready to Work Together?
-                </h4>
-                <p className="text-white/70 mb-4">
-                  Let&apos;s discuss your next project and bring your ideas to life
-                </p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300"
-                >
-                  Get In Touch
-                </motion.button>
-              </motion.div>
             </motion.div>
           </div>
         </motion.div>
