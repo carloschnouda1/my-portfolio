@@ -1,8 +1,17 @@
 import type { StaticImageData } from 'next/image'
-import ReviveClinic from '@/assets/images/revive.png'
+import ReviveClinic from '@/assets/images/revive-clinic.png'
 import CodehubSolutions from '@/assets/images/codehubsolutions.png'
 import GlutesWithTracy from '@/assets/images/gluteswithtracy.png'
 import Portfolio from '@/assets/images/portfolio.png'
+import ManaraEvents from '@/assets/images/manara.png'
+import QuintaGroup from '@/assets/images/quinta.jpg'
+import NokNok from '@/assets/images/noknok.png'
+import Bullix from '@/assets/images/bullix.png'
+import RasmalVentures from '@/assets/images/rasmal.jpg'
+import MustafaAlKadhimi from '@/assets/images/mustafaalkadhimi.png'
+import Mabrook from '@/assets/images/mabrook.png'
+import Oreyeon from '@/assets/images/oreyeon.png'
+import StrategyHub from '@/assets/images/strategyhub.png'
 
 export interface FreelanceProject {
   name: string
@@ -20,12 +29,14 @@ export interface ContributedProject {
   description: string
   /** the user's title/role on the team */
   role: string
+  /** short label of what the user's contribution covered (shown on the card) */
+  scope: string
   /** specific, concrete things the user shipped */
   contribution: string[]
-  tech: string[]
+  tech?: string[]
   liveUrl?: string
-  /** flag placeholder entries so they're obvious to fill in later */
-  placeholder?: boolean
+  /** the site's SEO / Open Graph image, when it has a usable one */
+  image?: StaticImageData
 }
 
 /** Projects built end-to-end as a freelancer. */
@@ -84,36 +95,104 @@ export const freelanceProjects: FreelanceProject[] = [
   },
 ]
 
-/**
- * Projects contributed to as part of a team.
- * TODO(carlos): replace these PLACEHOLDER entries with real team projects —
- * fill in `role`, concrete `contribution` bullets, `tech`, and `liveUrl`.
- */
+/** Projects contributed to as part of a team, with the scope of my work on each. */
 export const contributedProjects: ContributedProject[] = [
   {
-    name: 'PLACEHOLDER — Team Project A',
+    name: 'Manara Events',
     description:
-      'Short context on the product and the team you worked with. Replace this entry.',
+      'Riyadh-based events & entertainment company creating experiential AR/VR events, with full-service planning, production, and logistics.',
     role: 'Full Stack Engineer',
+    scope: 'Frontend & Backend',
     contribution: [
-      'Describe a concrete feature you owned (e.g. built the checkout flow)',
-      'Describe a system you improved (e.g. refactored the API layer)',
-      'Describe measurable impact if any (e.g. cut load time 40%)',
+      'Built the full site end-to-end — frontend and backend',
+      'Implemented content management for services and events',
     ],
-    tech: ['Laravel', 'React', 'TypeScript', 'MySQL'],
-    placeholder: true,
+    liveUrl: 'https://www.manaraevents.net/en',
+    image: ManaraEvents,
   },
   {
-    name: 'PLACEHOLDER — Team Project B',
+    name: 'The Quinta Group',
     description:
-      'Short context on the product and the team you worked with. Replace this entry.',
+      'Agricultural & horticulture company supplying greenhouses, irrigation, seeds, and farming solutions across Lebanon and the MENA region.',
+    role: 'Backend Engineer',
+    scope: 'Backend',
+    contribution: ['Developed the backend and data layer for the platform'],
+    liveUrl: 'https://www.thequintagroup.com/',
+    image: QuintaGroup,
+  },
+  {
+    name: 'NokNok',
+    description:
+      'Rapid grocery & goods delivery app in Lebanon and Ghana, delivering everyday essentials with live inventory in one touch.',
     role: 'Frontend Engineer',
+    scope: 'Features & UI',
+    contribution: ['Added new features and enhanced the existing UI'],
+    liveUrl: 'https://noknok.co/',
+    image: NokNok,
+  },
+  {
+    name: 'Bullix',
+    description:
+      'Precious-metals portfolio tracker that lets investors monitor holdings in real time across multiple accounts.',
+    role: 'Full Stack Engineer',
+    scope: 'Full Rebuild',
     contribution: [
-      'Concrete UI/feature you shipped',
-      'A reusable component system or design-system work',
-      'Cross-functional collaboration highlight',
+      'Rebuilt the site from Webflow into a custom Laravel app',
+      'Delivered both the frontend and backend',
     ],
-    tech: ['Next.js', 'React Native', 'TypeScript'],
-    placeholder: true,
+    liveUrl: 'https://bullix.io/',
+    image: Bullix,
+  },
+  {
+    name: 'Mustafa Al-Kadhimi',
+    image: MustafaAlKadhimi,
+    description:
+      'Personal platform and blog for the former Iraqi Prime Minister, documenting his work in governance, reform, and regional diplomacy.',
+    role: 'Full Stack Engineer',
+    scope: 'Frontend & Backend',
+    contribution: ['Built the site end-to-end — frontend and backend'],
+    liveUrl: 'https://www.mustafaalkadhimi.net/',
+  },
+  {
+    name: 'Mabrook',
+    image: Mabrook,
+    description:
+      'Sales-incentive and rewards platform giving customers of participating brands cash rewards and prizes based on purchase achievements.',
+    role: 'Backend Engineer',
+    scope: 'Backend',
+    contribution: [
+      'Fixed and hardened existing backend logic',
+      'Added new backend features',
+    ],
+    liveUrl: 'https://www.mabrouks.com/',
+  },
+  {
+    name: 'Oreyeon',
+    image: Oreyeon,
+    description:
+      'Aviation-safety company whose Runway Surface Monitoring System automates and digitizes airfield inspections and safety reporting.',
+    role: 'Backend Engineer',
+    scope: 'Backend',
+    contribution: ['Developed the backend for the monitoring platform'],
+    liveUrl: 'https://www.oreyeon.com/',
+  },
+  {
+    name: 'StrategyHub',
+    image: StrategyHub,
+    description: 'Qatar-based strategy and management consultancy.',
+    role: 'Backend Engineer',
+    scope: 'Backend',
+    contribution: ['Developed the backend for the site'],
+    liveUrl: 'https://strategyhub.qa/',
+  },
+  {
+    name: 'Rasmal Ventures',
+    description:
+      'Qatar venture-capital firm backing and scaling early-stage market leaders.',
+    role: 'Backend Engineer',
+    scope: 'Backend',
+    contribution: ['Developed the backend for the site'],
+    liveUrl: 'https://www.rasmalventures.com/en',
+    image: RasmalVentures,
   },
 ]

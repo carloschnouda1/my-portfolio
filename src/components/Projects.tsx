@@ -11,13 +11,14 @@ import { staggerContainer, staggerItem } from '@/utils/motion'
 interface MediaProject {
   name: string
   description: string
-  tech: string[]
+  tech?: string[]
   liveUrl?: string
   image?: StaticImageData
-  placeholder?: boolean
+  /** contribution scope shown in place of tech for team projects */
+  scope?: string
 }
 
-// Merge both categories into one unified media grid (all 6 projects).
+// Merge both categories into one unified media grid.
 const projects: MediaProject[] = [
   ...freelanceProjects.map((p) => ({
     name: p.name,
@@ -29,9 +30,9 @@ const projects: MediaProject[] = [
   ...contributedProjects.map((p) => ({
     name: p.name,
     description: p.description,
-    tech: p.tech,
+    scope: p.scope,
     liveUrl: p.liveUrl,
-    placeholder: p.placeholder,
+    image: p.image,
   })),
 ]
 
@@ -122,11 +123,11 @@ const Projects = () => {
               featured.liveUrl ? 'cursor-pointer' : ''
             }`}
           >
-            <MediaImage project={featured} badge={featured.tech[0]} className="min-h-[240px] md:min-h-[340px]" />
+            <MediaImage project={featured} badge={featured.scope ?? featured.tech?.[0] ?? ''} className="min-h-[240px] md:min-h-[340px]" />
 
             <div className="flex flex-col justify-center p-8 md:p-10">
               <div className="mb-4 font-mono text-xs uppercase tracking-wider text-[color:var(--c)]">
-                Featured · {featured.tech.slice(0, 2).join(' · ')}
+                Featured · {featured.scope ?? featured.tech?.slice(0, 2).join(' · ')}
               </div>
               <h3 className="text-2xl font-bold leading-snug text-white md:text-3xl">
                 {featured.name}
@@ -152,14 +153,16 @@ const Projects = () => {
               >
                 <MediaImage
                   project={project}
-                  badge={project.placeholder ? 'placeholder' : project.tech[0]}
+                  badge={project.scope ?? project.tech?.[0] ?? ''}
                   className="h-44"
                 />
 
                 <div className="flex flex-1 flex-col p-6">
-                  <div className="mb-2 font-mono text-xs uppercase tracking-wider text-white/40">
-                    {project.tech.slice(0, 2).join(' · ')}
-                  </div>
+                  {!project.scope && (
+                    <div className="mb-2 font-mono text-xs uppercase tracking-wider text-white/40">
+                      {project.tech?.slice(0, 2).join(' · ')}
+                    </div>
+                  )}
                   <h3 className="text-lg font-bold leading-snug text-white">{project.name}</h3>
                   <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-white/55">
                     {project.description}
