@@ -44,6 +44,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
     },
   },
+  verification: {
+    google: "-t2I8Pq8qb-l4GqcfYQ_XaqbulEsT6y8Zcv9UpUxbEI",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
