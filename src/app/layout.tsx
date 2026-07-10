@@ -57,12 +57,21 @@ export const metadata: Metadata = {
     description:
       "Full Stack Engineer building scalable web & mobile apps, CMS systems, and e-commerce platforms from architecture to deployment.",
     siteName: "Carlos Chnouda Portfolio",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Carlos Chnouda — Full Stack Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Carlos Chnouda - Full Stack Engineer",
     description:
       "Full Stack Engineer building scalable web & mobile apps, CMS systems, and e-commerce platforms from architecture to deployment.",
+    images: ["/og.png"],
   },
 };
 
