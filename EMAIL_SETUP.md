@@ -25,7 +25,7 @@ This guide will help you set up Gmail SMTP email sending and MongoDB database st
    # Alternative MongoDB Atlas URI (if using cloud MongoDB)
    # MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/
 
-   # Admin API (optional)
+   # Admin API (leave unset to disable it; use a long random value, e.g. `openssl rand -hex 32`)
    ADMIN_SECRET=your-secure-admin-secret
 
    # Next.js Configuration
@@ -135,6 +135,8 @@ Contact form submissions are stored with this structure:
 ### Admin API (Optional)
 - **GET** `/api/admin/contacts?limit=50`
 - Requires `Authorization: Bearer your-admin-secret` header
+- Returns `503` if `ADMIN_SECRET` is not set (there is no default secret) and `401` if the header is wrong
+- `limit` defaults to 50 and is capped at 100
 - Returns contact form submissions
 
 ## 🛡️ Security Features
